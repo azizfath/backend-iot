@@ -62,7 +62,8 @@ app.post('/insertData',
             // console.log(error)
             res.json(error)
         }
-})
+    }
+)
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
@@ -84,9 +85,45 @@ client.on('connect', function () {
     client.subscribe(`${process.env.MQTT_ROOT_TOPIC}/relay_base`)
 })
 
+let moisture=0
+let ph=0
+let relay=0
+let relay_water=0
+let relay_acid=0
+let relay_base=0
+
 client.on('message', function (topic, message) {
     // message is Buffer
-    console.log(topic)
-    console.log(message.toString())
+    // console.log(topic)
+    // console.log(message.toString())
+
+    if (topic===`${process.env.MQTT_ROOT_TOPIC}/moisture`) moisture = message.toString()
+    if (topic===`${process.env.MQTT_ROOT_TOPIC}/ph`) ph = message.toString()
+    if (topic===`${process.env.MQTT_ROOT_TOPIC}/relay_water`) relay_water = message.toString()
+    if (topic===`${process.env.MQTT_ROOT_TOPIC}/relay_acid`) relay_acid = message.toString()
+    if (topic===`${process.env.MQTT_ROOT_TOPIC}/relay_base`) relay_base = message.toString()
 })
 
+mqtt_to_db = () => { 
+    console.log("testttt")
+
+    // check('deviceId','deviceId is required').not().isEmpty(),
+        // try {
+            db.dev_result.create({
+                deviceId: process.env.DEVICE_ID,
+                moisture: moisture,
+                ph: ph,
+                relay_water: relay_water,
+                relay_acid: relay_acid,
+                relay_base: relay_base
+            }).then((result)=>{
+                console.log(result);
+                console.log("terkirim");
+            })
+        // }
+        // catch (error) {
+        //     console.log(error)
+        // }
+};
+
+let timeOut = setInterval(mqtt_to_db, 2000)
