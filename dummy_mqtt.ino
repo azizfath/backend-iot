@@ -1,17 +1,17 @@
 #include <PubSubClient.h>
-#include <ESP8266WiFi.h>
+#include <ESP8266WiFi.h> //USE WiFi.h for ESP32
 #include <Streaming.h>
 
-const char* ssid = "Kost Santri 3";
-const char* password = "wifinyarusak";
+const char* ssid = "";
+const char* password = "";
 WiFiClient espClient;
 PubSubClient mqttClient(espClient);
 
-const char* mqtt_server = "mqtt.azizfath.my.id";
+const char* mqtt_server = "";
 const int mqtt_port = 1883;
-const char* mqtt_user = "iot";
-const char* mqtt_pass = "kel8";
-
+const char* mqtt_user = "";
+const char* mqtt_pass = "";
+const char* device_id = "";
 const char* topic1 = "fpiot/moisture";
 const char* topic2 = "fpiot/ph";
 const char* topic3 = "fpiot/relay_water";
@@ -43,7 +43,7 @@ void setup() {
 }
 
 void mqttSub(char* topic, byte* message, unsigned int length){
-//UBAH BYTE MESSAGE MENJADI CHAR
+//UBAH BYTE MESSAGE MENJADI STRING
   String messageTemp;
 
   for (int i = 0; i < length; i++) {
@@ -59,7 +59,6 @@ void mqttSub(char* topic, byte* message, unsigned int length){
 
 
 // TRIGGER JIKA ADA PERUBAHAN STATE DARI WEB / ANDROID MASUKAN SINI
-
 
 //  if (String(topic) == "esp32/output") {
 //    Serial.print("Changing output to ");
@@ -80,7 +79,7 @@ void reconnect() {
   while (!mqttClient.connected()) {
     Serial.println("Attempting MQTT connection ...");
     
-    if (mqttClient.connect("dummy esp8266", mqtt_user, mqtt_pass)) {
+    if (mqttClient.connect(device_id, mqtt_user, mqtt_pass)) {
       Serial.println("connected");
       mqttClient.subscribe(topic1);
       mqttClient.subscribe(topic2);
