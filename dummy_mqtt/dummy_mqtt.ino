@@ -1,9 +1,8 @@
 #include <PubSubClient.h>
 #include <ESP8266WiFi.h> //USE WiFi.h for ESP32
-#include <Streaming.h>
 
-const char* ssid = "";
-const char* password = "";
+const char* ssid = "Kost Santri 3";
+const char* password = "wifinyarusak";
 WiFiClient espClient;
 PubSubClient mqttClient(espClient);
 
@@ -22,7 +21,7 @@ long lastMS = 0;
 
 void setup() {
   Serial.begin(115200);
-  Serial.print("Connecting to ");
+  Serial.print("WiFi Connecting to ");
   Serial.println(ssid);
 
   WiFi.begin(ssid, password);
@@ -42,16 +41,16 @@ void setup() {
 
 }
 
-void mqttSub(char* topic, byte* message, unsigned int length){
-//UBAH BYTE MESSAGE MENJADI STRING
+void mqttSub(char* topic, byte* payload, unsigned int length){
+//UBAH BYTE MESSAGE MENJADI STRING>
   String messageTemp;
 
   for (int i = 0; i < length; i++) {
-    messageTemp += (char)message[i];
+    messageTemp += (char)payload[i];
   }
 
-
-// PRINT KE SERIAL UNTUK MESSAGE
+ 
+// PRINT KE SERIAL UNTUK NEW MESSAGE
 //  Serial.print("Message arrived on topic: ");
 //  Serial.print(topic);
 //  Serial.print(". Message: ");
@@ -80,7 +79,7 @@ void reconnect() {
     Serial.println("Attempting MQTT connection ...");
     
     if (mqttClient.connect(device_id, mqtt_user, mqtt_pass)) {
-      Serial.println("connected");
+      Serial.println("MQTT Connected");
       mqttClient.subscribe(topic1);
       mqttClient.subscribe(topic2);
       mqttClient.subscribe(topic3);
@@ -109,6 +108,5 @@ void loop() {
     mqttClient.publish(topic3, "dummy relay_water");
     mqttClient.publish(topic4, "dummy relay_acid");
     mqttClient.publish(topic5, "dummy relay_base");
-    Serial << "...\n";
   }
 }
