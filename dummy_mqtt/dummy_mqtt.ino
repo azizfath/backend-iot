@@ -1,8 +1,8 @@
 #include <PubSubClient.h>
 #include <ESP8266WiFi.h> //USE WiFi.h for ESP32
 
-const char* ssid = "Kost Santri 3";
-const char* password = "wifinyarusak";
+const char* ssid = "";
+const char* password = "";
 WiFiClient espClient;
 PubSubClient mqttClient(espClient);
 
