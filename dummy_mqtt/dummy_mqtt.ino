@@ -43,10 +43,10 @@ void setup() {
 
 void mqttSub(char* topic, byte* payload, unsigned int length){
 //UBAH BYTE MESSAGE MENJADI STRING>
-  String messageTemp;
+  String message;
 
   for (int i = 0; i < length; i++) {
-    messageTemp += (char)payload[i];
+    message += (char)payload[i];
   }
 
  
@@ -54,19 +54,19 @@ void mqttSub(char* topic, byte* payload, unsigned int length){
 //  Serial.print("Message arrived on topic: ");
 //  Serial.print(topic);
 //  Serial.print(". Message: ");
-//  Serial.println(messageTemp);
+//  Serial.println(message);
 
 
 // TRIGGER JIKA ADA PERUBAHAN STATE DARI WEB / ANDROID MASUKAN SINI
 
 //  if (String(topic) == "esp32/output") {
 //    Serial.print("Changing output to ");
-//    if(messageTemp == "on"){
+//    if(message == "on"){
 //      Serial.println("on");
 //      digitalWrite(relayOne, LOW);
 //      mqttClient.publish("esp32/lightSensor/state", "on");
 //    }
-//    else if(messageTemp == "off"){
+//    else if(message == "off"){
 //      Serial.println("off");
 //      digitalWrite(relayOne, HIGH);
 //      mqttClient.publish("esp32/lightSensor/state", "off");
