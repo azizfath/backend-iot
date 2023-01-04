@@ -119,11 +119,18 @@ mqtt_to_db = () => {
             }).then((result)=>{
                 console.log(result);
                 console.log("terkirim");
+                moisture=0
+                ph=0
+                relay=0
+                relay_water=0
+                relay_acid=0
+                relay_base=0
             })
         // }
         // catch (error) {
         //     console.log(error)
         // }
+    
 };
 
 let timeOut = setInterval(mqtt_to_db, 2000)
