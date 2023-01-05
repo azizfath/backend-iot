@@ -105,7 +105,7 @@ client.on('message', function (topic, message) {
 })
 
 mqtt_to_db = () => { 
-    console.log("testttt")
+    // console.log("testttt")
 
     // check('deviceId','deviceId is required').not().isEmpty(),
         // try {
@@ -117,8 +117,8 @@ mqtt_to_db = () => {
                 relay_acid: relay_acid,
                 relay_base: relay_base
             }).then((result)=>{
-                console.log(result);
-                console.log("terkirim");
+                // console.log(result);
+                // console.log("terkirim");
                 moisture=0
                 ph=0
                 relay=0
