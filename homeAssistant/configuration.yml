@@ -1,0 +1,62 @@
+# Loads default set of integrations. Do not remove.
+
+#enable this if you need to use reverse proxy
+#http:
+#  use_x_forwarded_for: true
+#  trusted_proxies:
+#     - 0.0.0.0
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+mqtt:
+  switch:
+    - unique_id: relay_water
+      name: relay_water
+      state_topic: "fpiot/relay_water"
+      command_topic: "fpiot/relay_water"
+      payload_on: "1"
+      payload_off: "0"
+
+    - unique_id: relay_acid
+      name: relay_acid
+      state_topic: "fpiot/relay_acid"
+      command_topic: "fpiot/relay_acid"
+      payload_on: "1"
+      payload_off: "0"
+
+    - unique_id: relay_base
+      name: relay_base
+      state_topic: "fpiot/relay_base"
+      command_topic: "fpiot/relay_base"
+      payload_on: "1"
+      payload_off: "0"
+
+    - unique_id: Manual Mode
+      name: Manual Mode
+      state_topic: "fpiot/mode"
+      command_topic: "fpiot/mode"
+      payload_on: "manual"
+      payload_off: "otomatis"
+
+  sensor:
+    - name: "PH"
+      state_topic: "fpiot/ph"
+      unit_of_measurement: ""
+      icon: mdi:speedometer
+
+    - name: "Moisture"
+      state_topic: "fpiot/moisture"
+      unit_of_measurement: ""
+      icon: mdi:speedometer
