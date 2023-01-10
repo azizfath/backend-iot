@@ -12,7 +12,7 @@ let ph=0
 let relay_water=0
 let relay_acid=0
 let relay_base=0
-let mode='manual'
+let mode='otomatis'
 
 db.mongoose.connect(
     `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.DB_NAME}`
