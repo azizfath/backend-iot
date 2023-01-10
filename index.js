@@ -9,11 +9,10 @@ const mqtt = require('mqtt')
 
 let moisture=0
 let ph=0
-let relay=0
 let relay_water=0
 let relay_acid=0
 let relay_base=0
-
+let mode='manual'
 
 db.mongoose.connect(
     `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.DB_NAME}`
@@ -90,6 +89,7 @@ client.on('connect', function () {
     client.subscribe(`${process.env.MQTT_ROOT_TOPIC}/relay_water`)
     client.subscribe(`${process.env.MQTT_ROOT_TOPIC}/relay_acid`)
     client.subscribe(`${process.env.MQTT_ROOT_TOPIC}/relay_base`)
+    client.subscribe(`${process.env.MQTT_ROOT_TOPIC}/mode`)
 })
 
 
@@ -103,6 +103,7 @@ client.on('message', function (topic, message) {
     if (topic===`${process.env.MQTT_ROOT_TOPIC}/relay_water`) relay_water = message.toString()
     if (topic===`${process.env.MQTT_ROOT_TOPIC}/relay_acid`) relay_acid = message.toString()
     if (topic===`${process.env.MQTT_ROOT_TOPIC}/relay_base`) relay_base = message.toString()
+    if (topic===`${process.env.MQTT_ROOT_TOPIC}/mode`) mode = message.toString()
 })
 
 mqtt_to_db = () => { 
@@ -113,16 +114,17 @@ mqtt_to_db = () => {
         ph: ph,
         relay_water: relay_water,
         relay_acid: relay_acid,
-        relay_base: relay_base
+        relay_base: relay_base,
+        mode: mode
     }).then((result)=>{
         // console.log(result);
         // console.log("terkirim");
         moisture=0
         ph=0
-        relay=0
         relay_water=0
         relay_acid=0
         relay_base=0
+        mode= 'manual'
     })    
 };
 
