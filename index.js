@@ -1,5 +1,4 @@
 require('dotenv').config()
-// console.log(process.env)
 const express = require('express')
 const db = require("./models")
 const app = express()
@@ -7,6 +6,14 @@ app.use(express.json())
 const port = process.env.PORT || 3000
 const { check, validationResult } = require('express-validator')
 const mqtt = require('mqtt')
+
+let moisture=0
+let ph=0
+let relay=0
+let relay_water=0
+let relay_acid=0
+let relay_base=0
+
 
 db.mongoose.connect(
     `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}/${process.env.DB_NAME}`
@@ -85,12 +92,6 @@ client.on('connect', function () {
     client.subscribe(`${process.env.MQTT_ROOT_TOPIC}/relay_base`)
 })
 
-let moisture=0
-let ph=0
-let relay=0
-let relay_water=0
-let relay_acid=0
-let relay_base=0
 
 client.on('message', function (topic, message) {
     // message is Buffer
@@ -106,31 +107,23 @@ client.on('message', function (topic, message) {
 
 mqtt_to_db = () => { 
     // console.log("testttt")
-
-    // check('deviceId','deviceId is required').not().isEmpty(),
-        // try {
-            db.dev_result.create({
-                deviceId: process.env.DEVICE_ID,
-                moisture: moisture,
-                ph: ph,
-                relay_water: relay_water,
-                relay_acid: relay_acid,
-                relay_base: relay_base
-            }).then((result)=>{
-                // console.log(result);
-                // console.log("terkirim");
-                moisture=0
-                ph=0
-                relay=0
-                relay_water=0
-                relay_acid=0
-                relay_base=0
-            })
-        // }
-        // catch (error) {
-        //     console.log(error)
-        // }
-    
+    db.dev_result.create({
+        deviceId: process.env.DEVICE_ID,
+        moisture: moisture,
+        ph: ph,
+        relay_water: relay_water,
+        relay_acid: relay_acid,
+        relay_base: relay_base
+    }).then((result)=>{
+        // console.log(result);
+        // console.log("terkirim");
+        moisture=0
+        ph=0
+        relay=0
+        relay_water=0
+        relay_acid=0
+        relay_base=0
+    })    
 };
 
-let timeOut = setInterval(mqtt_to_db, 2000)
+let timeOut = setInterval(mqtt_to_db, 10000)
