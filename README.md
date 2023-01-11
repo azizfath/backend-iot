@@ -36,4 +36,4 @@
 
 <h2>Flowchart : </h2>
 
-![Alt text](./ARCHITECTURE/flowChart.png?raw=true "FLOW DIAGRAM")
+![Alt text](./ARCHITECTURE/diagram_alur.png?raw=true "FLOW DIAGRAM")
