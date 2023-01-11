@@ -26,7 +26,6 @@ String mode = "otomatis";
 
 //millis var
 long lastMS1 = 0;
-long lastMS2 = 0;
 
 //input pin
 #define analogPhPin 32 //Pin Ph sensor
@@ -115,20 +114,7 @@ void loop() {
     long now1 = millis();
     if (now1 - lastMS1 > 1000) {
         lastMS1 = now1;
-        phSensor();
-        soilSensor();
-        naiveBayes();
         program();
-    }
-
-    long now2 = millis();
-    if (now2 - lastMS2 > 10000) {
-        lastMS2 = now2;
-        if (mode == "otomatis") {
-            mqttClient.publish(topic3, (char * ) state_relay_water.c_str());
-            mqttClient.publish(topic4, (char * ) state_relay_acid.c_str());
-            mqttClient.publish(topic5, (char * ) state_relay_base.c_str());
-        }
     }
 
 }
