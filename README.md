@@ -42,3 +42,8 @@
 <h2>Flowchart : </h2>
 
 ![Alt text](./ARCHITECTURE/diagram_alur.png?raw=true "FLOW DIAGRAM")
+
+
+[![Video Demo]
+(./ARCHITECTURE/diagram_alur.png?raw=true "FLOW DIAGRAM")]
+(https://youtu.be/GUnc3NPnQkU)
