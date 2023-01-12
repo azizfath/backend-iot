@@ -43,6 +43,6 @@
 
 ![Flowchart](./ARCHITECTURE/diagram_alur.png?raw=true "FLOW DIAGRAM")
 
-<h2>Video Demo : </h2>
+<h2>Video Demo (Klik Gambar untuk Play Video): </h2>
 
 [![Video Demo](./ARCHITECTURE/thumbnail.jpg?raw=true "Video Demo")](https://youtu.be/GUnc3NPnQkU)
