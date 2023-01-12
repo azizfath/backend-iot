@@ -8,8 +8,8 @@
         <th>NIM</th>
     </tr>
     <tr>
-        <th>Fathurrahman Nur Aziz</th>
-        <th>20.11.3694</th>
+        <td>Fathurrahman Nur Aziz</td>
+        <td>20.11.3694</td>
     </tr>
     <tr>
         <td>Miftahudin Faiz</td>
