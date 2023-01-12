@@ -31,19 +31,18 @@
 
 <h2>Skema Alat : </h2>
 
-![Alt text](./ARCHITECTURE/skema_alat.jpg?raw=true "SKEMA ALAT")
+![Skema Alat](./ARCHITECTURE/skema_alat.jpg?raw=true "SKEMA ALAT")
 
 
 <h2>Arsitektur teknologi : </h2>
 
-![Alt text](./ARCHITECTURE/architecture_technology.png?raw=true "ARCHITECTURE TECHNOLOGY")
+![Arsitektur teknologi](./ARCHITECTURE/architecture_technology.png?raw=true "ARCHITECTURE TECHNOLOGY")
 
 
 <h2>Flowchart : </h2>
 
-![Alt text](./ARCHITECTURE/diagram_alur.png?raw=true "FLOW DIAGRAM")
+![Flowchart](./ARCHITECTURE/diagram_alur.png?raw=true "FLOW DIAGRAM")
 
+<h2>Video Demo : </h2>
 
-[![Video Demo]
-(./ARCHITECTURE/diagram_alur.png?raw=true "FLOW DIAGRAM")]
-(https://youtu.be/GUnc3NPnQkU)
+[![Video Demo](./ARCHITECTURE/thumbnail.jpg?raw=true "Video Demo")](https://youtu.be/GUnc3NPnQkU)
