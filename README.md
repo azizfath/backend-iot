@@ -29,6 +29,11 @@
     </tr>
 </table>
 
+<h2>Skema Alat : </h2>
+
+![Alt text](./ARCHITECTURE/skema_alat.jpg?raw=true "SKEMA ALAT")
+
+
 <h2>Arsitektur teknologi : </h2>
 
 ![Alt text](./ARCHITECTURE/architecture_technology.png?raw=true "ARCHITECTURE TECHNOLOGY")
