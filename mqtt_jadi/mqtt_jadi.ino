@@ -3,16 +3,16 @@
 #include <WiFi.h> //USE WiFi.h for ESP32
  // #include <ESP8266WiFi.h>
 
-const char * ssid = "Kost Santri 3";
-const char * password = "wifinyarusak";
+const char * ssid = "";
+const char * password = "";
 WiFiClient espClient;
 PubSubClient mqttClient(espClient);
 
-const char * mqtt_server = "mqtt.azizfath.my.id";
+const char * mqtt_server = "";
 const int mqtt_port = 1883;
-const char * mqtt_user = "iot";
-const char * mqtt_pass = "kel8";
-const char * device_id = "IotFp";
+const char * mqtt_user = "";
+const char * mqtt_pass = "";
+const char * device_id = "";
 const char * topic1 = "fpiot/moisture";
 const char * topic2 = "fpiot/ph";
 const char * topic3 = "fpiot/relay_water";
