@@ -266,13 +266,13 @@ void program() {
         if (lKering > lNormal) {
             digitalWrite(pump_water, 0);
             state_relay_water = "1";
-            mqttClient.publish(topic3, (char * ) state_relay_base.c_str());
+            mqttClient.publish(topic3, (char * ) state_relay_water.c_str());
         }
 
         if (lNormal > lKering) {
             digitalWrite(pump_water, 1);
             state_relay_water = "0";
-            mqttClient.publish(topic3, (char * ) state_relay_base.c_str());
+            mqttClient.publish(topic3, (char * ) state_relay_water.c_str());
         }
     }
 }
